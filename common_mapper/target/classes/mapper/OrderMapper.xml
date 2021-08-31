@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.usian.mapper.OrderMapper">
+
+   <!-- <select id="queryOverTimeOrderIds" resultType="String">
+        SELECT order_id FROM `tb_order` WHERE TIMESTAMPDIFF(MINUTE,create_time,NOW())>=30
+    </select>-->
+
+
+    <update id="closeOverTimeOrders">
+        UPDATE tb_order a,(SELECT order_id FROM `tb_order` WHERE TIMESTAMPDIFF(MINUTE,create_time,NOW())>=30) b SET a.STATUS = 6 ,a.update_time = NOW()
+       WHERE a.`order_id` = b.order_id
+    </update>
+</mapper>
