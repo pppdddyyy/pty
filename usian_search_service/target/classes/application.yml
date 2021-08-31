@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: usian-search-service
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/usian?characterEncoding=UTF-8
+    username: root
+    password: root
+    type: com.alibaba.druid.pool.DruidDataSource
+  data:
+    elasticsearch:
+        cluster-nodes: 192.168.25.130:9200
+  rabbitmq:
+    host: 192.168.25.130
+    port: 5672
+    username: admin
+    password: 1111
+    virtual-host: /day02
+    listener:
+      direct:
+        acknowledge-mode: manual
+      simple:
+        acknowledge-mode: manual
+server:
+  port: 8095
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+mybatis-plus:
+  mapper-locations: classpath:mapper/**.xml  #映射文件的路径
+  type-aliases-package: com.usian.vo,com.usian.pojo # 在映射文件中使用某个类时不用写全路径名，简化写别名
